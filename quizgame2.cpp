@@ -10,19 +10,22 @@ bool answer_status(int question[], int qNum);
 int main()
 {
 
-    int userQuestion;
-    string answer;
-    int totalPoints = 0;
+    int userQuestion; // the question the user picks
+    string answer; // answer of the user per question
+    int totalPoints = 0; // total points gained from correct answers
 
-    int question_status[5];
+    int question_status[5]; // status of the question being answered
 
+    // Questions
     string q1 = "Who was the famous leader of Germany from 1933-1945?";
     string q2 = "In which year did the Cold War end?";
     string q3 = "What is the name of the tallest climbable mountain in the world?";
     string q4 = "What is the name of the deepest ocean trench?";
     string q5 = "What is 200 / 8 + 7 * 2 - 1?";
 
-    string questions[] = {q1, q2, q3, q4, q5};
+    // While it's more efficient to directly put the questions in the array, variables are used
+    // to ensure that it looks organised, and allows a practice of using arrays.
+    string questions[] = {q1, q2, q3, q4, q5}; 
 
     do {
 
@@ -33,7 +36,7 @@ int main()
         switch (userQuestion) {
             case 1:
                 if (answer_status(question_status, 1)) {
-                    cout << "You've answered this question already! \n";
+                    cout << "You've answered this question already! \n"; // Checks if the question is answered, and breaks out if true
                     break; 
                 } else {
                     cout << questions[0] << "\n";
@@ -42,12 +45,12 @@ int main()
 
                     if (answer == "Adolf Hitler" || "adolf hitler") {
                         cout << "Your answer is correct! \n";
-                        cout << "You have obtained 100 points. \n";
+                        cout << "You have obtained 100 points. \n"; // awards the user for getting a correct answer
                         totalPoints += 100;
                         question_status[0] = 1;
                         break;
                     } else {
-                        cout << "Your answer is incorrect! \n";
+                        cout << "Your answer is incorrect! \n"; // gives no marks, but still marks the question as done
                         question_status[0] = 1;
                         break;
                     }
@@ -137,18 +140,19 @@ int main()
                         break;
                     }
                 }
-            case 6:
+            case 6: // Quit the test
                 cout << "You have decided to quit the test! \n";
                 cout << "You have obtained " << totalPoints << " out of 500 points! \n";
                 return 0;
             default:
-                cout << "Invalid number! Please try again. \n";
+                cout << "Invalid number! Please try again. \n"; // Asks the user for another valid input
         }
 
     } while (true);
 
 }
 
+// Function that returns a true/false based on the question's answer status (whether the array has the relevant data)
 bool answer_status(int question[], int qNum) {
     if (question[qNum - 1] == qNum) {
         return true;
